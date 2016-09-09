@@ -20,15 +20,15 @@ def tokenize_txt(infile, configfile):
     with open(infile, 'r', encoding = 'utf-8') as fileread:
         lines = fileread.readlines()
 
-        # initialize tokenizer
-        tokenizer = ucto.Tokenizer(configfile)
+    # initialize tokenizer
+    tokenizer = ucto.Tokenizer(configfile)
 
     # for each line
     for line in lines:
         # tokenize    
-        tokenized_line = tokenizer.process(line)
+        tokenizer.process(line)
         # add each token to the sentence...
-        for token in tokenized_line:
+        for token in tokenizer:
             sentence.append(token.text)
             # ...until the sentence ends
             if token.isendofsentence():
