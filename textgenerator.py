@@ -1,6 +1,5 @@
 class TextGenerator:
-    minimum_paragraph_length = 30
-    
+    # Generates one sentence (list-based) until a sentence final words occurs
     def generate_sentence(self):
         sentence = []
         sentence.append(self.lm.get_first_word())
@@ -13,17 +12,18 @@ class TextGenerator:
         sentence.append(next_word)
         return sentence
     
+    # Generates one paragraph (list-based) until the minimum number of words is met
     def generate_paragraph(self):
         paragraph = []
         
-        word_count = 1
+        word_count = 0
         while word_count < self.minimum_paragraph_length:
             sentence = self.generate_sentence()
             paragraph.append(sentence)
-            word_count += len(sentence)
+            word_count = word_count + len(sentence)
         
         return paragraph
-
-    def __init__(self, language_model):
+    
+    def __init__(self, language_model, minimum_paragraph_length):
         self.lm = language_model
-        print(self.generate_paragraph())
+        self.minimum_paragraph_length = int(minimum_paragraph_length)
