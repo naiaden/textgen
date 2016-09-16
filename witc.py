@@ -5,6 +5,7 @@ import configparser
 import json
 from languagemodel import LanguageModel
 from textgenerator import TextGenerator
+from normaliser import FrogNormaliser
 
 config = configparser.ConfigParser()
 config.read('witc.ini')
@@ -16,6 +17,9 @@ if cache_file:
     print("+ Reading cache file")
     with open(cache_file) as data_file:
         data = json.load(data_file)
+
+print("+ Normalising frogged data")
+fn = FrogNormaliser(data)
 
 print("+ Creating language model")
 lm = LanguageModel(data)
