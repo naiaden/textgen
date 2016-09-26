@@ -19,7 +19,7 @@ for json_corpus in json_corpora:
     with open(json_corpus,'r',encoding='utf-8') as corpus_in:
         corpus_str = corpus_in.read()
     corpus_json = json.loads(corpus_str)
-    sentences.extend([[token['word'] for token in sentence if token['pos'] != 'LET()'] for sentence in corpus_json]
+    sentences.extend([[token['word'] for token in sentence if token['pos'] != 'LET()'] for sentence in corpus_json])
 
 print('done. loaded',len(sentences),'sentences')
 
