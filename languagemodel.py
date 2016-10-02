@@ -9,7 +9,11 @@ class LanguageModel:
     last_words = {}
     ngrams = {} # Dict(count:int, followers:[])
     pos_ngrams = {} # Dict(count:int, followers:[]
-    
+    templates = {} # Dict(string_pattern, pattern:[], count:int)
+    pos_token = {}
+      
+
+
     def get_first_word(self):
         return random.choice(list(self.first_words.keys()))
     
@@ -58,6 +62,27 @@ class LanguageModel:
             return True
         return False
     
+    def get_filled_template(self):
+        template = self.templates[random.choice(list(self.templates.keys()))]['pos_tags']
+        print(template)
+        sentence = []
+        for i, pos_tag in enumerate(template):
+            if i == 0:
+                # random word that is pos and begin of sentence word
+                possible_words = set.intersection(set(self.first_words.keys()), set(self.pos_token[pos_tag.split("(")[0]].keys()))
+                sentence.append(random.sample(possible_words, 1)[0])
+            elif i == (len(template)-1):
+                #possible_words = set.intersection(set(self.last_words.keys()), set(self.pos_token[pos_tag.split("(")[0]].keys()))
+                #sentence.append(random.sample(possible_words, 1)[0])
+                sentence.append('.')
+            else:
+                words = set(self.pos_token[pos_tag.split("(")[0]].keys())
+                possible_words = words.difference(set(self.first_words.keys()), set(self.last_words.keys()))
+                #print(words)
+                sentence.append(random.sample(possible_words, 1)[0])
+        print(sentence)
+        
+    
     # Store all the sentence final words with punctuation
     def last_word_feature(self, sentence):
         if(sentence and sentence[-1]['word'][-1] in string.punctuation):
@@ -67,7 +92,27 @@ class LanguageModel:
     def start_word_feature(self, sentence):
         if(sentence and sentence[0]['word'][0].isupper()):
             self.first_words[sentence[0]['word']] = self.first_words.get(sentence[0]['word'], 1)
-    
+
+    # Store all the sentences by their pos tags    
+    def template_feature(self, sentence):
+        # replace the punctuation for its implementation, instead of its pos tag
+        # remove the parameters of the pos tags. They are too constraining
+        pos_tags = [x['word'] if x['pos'] == "LET()" else x['pos'].split("(")[0] for x in sentence]
+        s_pos_tags = ' '.join(pos_tags)
+        if s_pos_tags not in self.templates:
+            self.templates[s_pos_tags] = {}
+        self.templates[s_pos_tags]['pos_tags'] = pos_tags
+        self.templates[s_pos_tags]['count'] = 1 + self.templates[s_pos_tags].get('count', 0)
+
+    # Store for each pos tag its implementations in the text
+    def pos_token_feature(self, sentence):
+        for token in sentence:
+            pos_tag = token['pos'].split("(")[0] ## remove this?
+            word = token['word']
+            if pos_tag not in self.pos_token:
+                self.pos_token[pos_tag] = {}
+            self.pos_token[pos_tag][word] = self.pos_token[pos_tag].get(word, 0) + 1
+
     # Store all unigrams (token unigrams if code is 'word', pos unigrams if code is 'pos'), and their frequency
     def unigram_feature(self, sentence, code, target): # code = 'word', 'pos', target = ngrams, pos_ngrams
         if(sentence):
@@ -112,6 +157,8 @@ class LanguageModel:
         for sentence in sentences:
             self.start_word_feature(sentence)
             self.last_word_feature(sentence)
+            self.template_feature(sentence)
+            self.pos_token_feature(sentence)
             self.unigram_feature(sentence, 'word', self.ngrams)
             self.unigram_feature(sentence, 'pos', self.pos_ngrams)
             self.bigram_feature(sentence, 'word', self.ngrams)
@@ -135,4 +182,7 @@ class LanguageModel:
     def __init__(self, sentences):
         #print("number of sentences: " + str(len(sentences)))
         self.generate_features(sentences)
+        #print(self.templates)
+        self.get_filled_template()
 
+    

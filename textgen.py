@@ -17,6 +17,7 @@ import sys
 import re
 import random
 from random import randint
+import time
 #import numpy
 
 
@@ -26,7 +27,7 @@ language = "dutch"
 number_of_paragraphs = 8
 minimum_paragraph_length = 30
 
-outputfile = textfile+".random"+str(randint(1,100))
+outputfile = textfile+"."+str(int(time.time()))
 
 abbreviations_array = []
 with  open("abbreviations.txt",'r') as abbrevfile:
@@ -91,7 +92,6 @@ def tokenize(t):
     #text = t.lower()
     text = t
     text = re.sub("\n"," ",text)
-    #text = re.sub('[^a-zèéeêëûüùôöòóœøîïíàáâäæãåA-Z0-9- \']', "", text)
     wrds = text.split()
     return wrds
 

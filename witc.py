@@ -23,26 +23,26 @@ if cache_file:
     with open(cache_file) as data_file:
         data = json.load(data_file)
 
-print("+ Normalising frogged data")
-fn = FrogNormaliser(data)
+#print("+ Normalising frogged data")
+#fn = FrogNormaliser(data)
 
 print("+ Creating language model")
 lm = LanguageModel(data)
 
-print("+ Loading Word2Vec model")
-ss = SentenceSemantics()
-ss.load_model(w2v_model)
-
-print("+ Generating text")
-tg = TextGenerator(lm, minimum_paragraph_length)
-with open(testout,'w',encoding='utf-8') as t_out:
-    target = tg.generate_sentence()
-    t_out.write('start : ' + ' '.join(target) + '\n')
-    for i in range(50):
-        sources = [tg.generate_sentence() for x in range(150)]
-        candidates = ss.return_sentence_candidates(target,sources)
-        target = random.choice([x[0] for x in candidates])
-        t_out.write(str(i) + ' : ' + ' '.join(target) + '\n')
-
+#print("+ Loading Word2Vec model")
+#ss = SentenceSemantics()
+#ss.load_model(w2v_model)
+#
+#print("+ Generating text")
+#tg = TextGenerator(lm, minimum_paragraph_length)
+#with open(testout,'w',encoding='utf-8') as t_out:
+#    target = tg.generate_sentence()
+#    t_out.write('start : ' + ' '.join(target) + '\n')
+#    for i in range(50):
+#        sources = [tg.generate_sentence() for x in range(150)]
+#        candidates = ss.return_sentence_candidates(target,sources)
+#        target = random.choice([x[0] for x in candidates])
+#        t_out.write(str(i) + ' : ' + ' '.join(target) + '\n')
+#
 #print(tg.generate_paragraph()) 
 
