@@ -42,7 +42,10 @@ with open(testout,'w',encoding='utf-8') as t_out:
         sources = [tg.generate_sentence() for x in range(150)]
         candidates = ss.return_sentence_candidates(target,sources)
         target = random.choice([x[0] for x in candidates])
-        t_out.write(str(i) + ' : ' + ' '.join(target) + '\n')
-
+        t_out.write('--------------------------------\n')
+        for j in range(len(candidates)):
+            t_out.write(str(i) + '.' + str(j) + ' : ' + ' '.join(candidates[j][0]) + '\n')
+        t_out.write(str(i) + ' CHOICE: ' + ' '.join(target) + '\n')
+ 
 #print(tg.generate_paragraph()) 
 
