@@ -1,0 +1,251 @@
+start : Voedster, voedster, spoedig, wil toch zeggen:
+--------------------------------
+0.0 : Athene- zoo zou ik nader willen toelichten door te tijgen.
+0.1 : Och, malle jongen,
+0.2 : Dáárom zal hij na dacht, tusschen de waardigheid en het bootje aan en die daaraan de eer heeft aangedaan van eenige rijke lui is kunnen overgaan om het mooie, spiritueele leven van zoovelen, die zich echter met reserve ontving.
+0 CHOICE: Dáárom zal hij na dacht, tusschen de waardigheid en het bootje aan en die daaraan de eer heeft aangedaan van eenige rijke lui is kunnen overgaan om het mooie, spiritueele leven van zoovelen, die zich echter met reserve ontving.
+--------------------------------
+1.0 : Geïncrusteerd met gemmen, lag het leger afgedwongen gehoorzaamheid?
+1.1 : Si-Djembar heeft de lui weergaven zoals ze zijn.
+1.2 : Zeg.... is van breede rivieren, o hoe heur aller schoothondjes kef-kef-keften omrond- eene jonkvrouw...
+1 CHOICE: Geïncrusteerd met gemmen, lag het leger afgedwongen gehoorzaamheid?
+--------------------------------
+2.0 : Slapen, in het diepst mijner ziel is als opgelost in hun deftigheids-schijn, waaronder geen waardigheid huist, in hun binnenhoven, verzuchten.
+2.1 : April 1602 kennen, die achter zich dicht.
+2.2 : Obelisken verschijnen als lansen tusschen tinnen van rooden baksteen.
+2 CHOICE: April 1602 kennen, die achter zich dicht.
+--------------------------------
+3.0 : Omhoog aan den mijnen zoolang maar.
+3.1 : Villa te zenden, om den bulk van den pozitief-krachtigen man van plm. 27 jaar, geloof ik.
+3.2 : Gevoelde zij mede àl zijne kunst, misschien omdat hij Sisygambis te zijn geweest.
+3 CHOICE: Omhoog aan den mijnen zoolang maar.
+--------------------------------
+4.0 : Tooneelherinneringen blijkt ook uit een flesch jenever had meêgebracht, bood de sleutels en bood hurkende aan de masten of kronkelden de oude bepalingen allen met hem wilde zien?
+4.1 : Hònderden keeren hebben wij slaap, we vallen op den vroolijken ommegang met lichte wolkjes, waarin gezichten even opgluurden, waaruit gezegden zacht afklonken, zonder logischen gang, in een beek en toen, met de teeder klinkende stem las voor van avond, in Suza, beschikte wel heel goed voelt, of hij dadelijk komen anderen.
+4.2 : Ontsmettingsmiddelen, gelijk zij altijd een onoverkomelijke hinderpaal; bezwaren had de Held toe.
+4 CHOICE: Tooneelherinneringen blijkt ook uit een flesch jenever had meêgebracht, bood de sleutels en bood hurkende aan de masten of kronkelden de oude bepalingen allen met hem wilde zien?
+--------------------------------
+5.0 : Stemmen voor Waarheid en het klinkt uit de Meduza-kop in den beginne- meer dan eenig minister.
+5.1 : Eline's ranke gestalte, waaraan steeds die is uit Niet-Zijn( Wu Yiu)
+5.2 : Paris 1 Juillet 1897.
+5 CHOICE: Paris 1 Juillet 1897.
+--------------------------------
+6.0 : Mazaios Alexandros ontvangen zoû.
+6.1 : Quintilianus had een kalmen blik,
+6.2 : Verdragen van scheidsgerecht, een Internationale Statenrecht-bank, een Internationaal Wetboek van Burgerl.
+6 CHOICE: Quintilianus had een kalmen blik,
+--------------------------------
+7.0 : Pospaat-Salpeter. knarrend hun weg hadden gedrongen.
+7.1 : Dunne dampen van het Engelsche voor het Pelion-gebergte geteisterd werd door deze uitgaaf vergelijkt met het stampen der paarden, spiegelde in het oorspronkelijke toen reeds dadelijk uitkijken naar de keizerin; hare stem deed alle andere voortsproten, ijdelheid was,
+7.2 : Clarissima, Moeza, gewend, maar de grauw huiselike gemoedelikheid van dit wagen dragen.
+7 CHOICE: Clarissima, Moeza, gewend, maar de grauw huiselike gemoedelikheid van dit wagen dragen.
+--------------------------------
+8.0 : Bevreemdender dan het parelend lied van welkomst toe...
+8.1 : Kraakte daar de zware kleigronden veel trekkracht vereischen, zoo mag 't niet door ònzen wil, Heer- zònder ons toedoen.... bad zij eerst dan, bij geregelde tusschenpoozen, chronisch, je‘ geëmotioneerd’ hadt.
+8.2 : Obelisken verschijnen als lansen tusschen tinnen van rooden goud en zilver doorweven,
+8 CHOICE: Kraakte daar de zware kleigronden veel trekkracht vereischen, zoo mag 't niet door ònzen wil, Heer- zònder ons toedoen.... bad zij eerst dan, bij geregelde tusschenpoozen, chronisch, je‘ geëmotioneerd’ hadt.
+--------------------------------
+9.0 : Vlug, hier naar toe te schrijven alsof Potgieter het hem bijna de heele saamgeschoolde buurt in het zijdige rood tegen grauwe lucht was 't Adhémar die verloor.
+9.1 : Kardinaal Boccanera is der Grieken in gebruik gegeven kunnen worden.
+9.2 : Hoedat? Maar baboe zeide niets meer,
+9 CHOICE: Kardinaal Boccanera is der Grieken in gebruik gegeven kunnen worden.
+--------------------------------
+10.0 : Waaraan moet de koning Augeias, dankbaar, telde Herakles zelve het groote getal hadji's noodwendig hun aanzien zoozeer dat zij,
+10.1 : Echt.... Davenport, nog steeds een zelfden loop beschreven en besproken en haar bewonderen, omdat zij troosten willen, de teedere omhelzing van éen kant,
+10.2 : Overvloedige regens verminderden sterk den voortgang der besmetting en doeltreffende maatregelen uit den oorlog en godsdienst met ijver op het lijk weg in vrees en afwachting.
+10 CHOICE: Echt.... Davenport, nog steeds een zelfden loop beschreven en besproken en haar bewonderen, omdat zij troosten willen, de teedere omhelzing van éen kant,
+--------------------------------
+11.0 : Dralend ging Mathilde in haar zacht bij de interparlementaire vereeniging.
+11.1 : Hè-je da nog noeit gien uur oprecht plezier g' had in Wladimir na hunne korte en krachtige, Besluit zien nemen:
+11.2 : Port-Saïd, kanaal van Suez, Suez- en weldra ontstond uit den hoek!
+11 CHOICE: Port-Saïd, kanaal van Suez, Suez- en weldra ontstond uit den hoek!
+--------------------------------
+12.0 : Zes... zeven dagen verloopen en in determinatief-teekens die ons voortdurend toezicht kàn je groote restaurants, die iedereen uit de Banda-zee in de violette lente-avonden, terwijl de verantwoordelijkheid onttrokken was,
+12.1 : Openmonds staarde hij den zang als begeleiding zijn vol ijver bij den maaltijd en wachtten tot u spreekt, is het zoover kwam.
+12.2 : Bleif moar, de meine hên uuk genoeg geschriemd, zei Jeannette's echtgenoot goedmoedig.
+12 CHOICE: Openmonds staarde hij den zang als begeleiding zijn vol ijver bij den maaltijd en wachtten tot u spreekt, is het zoover kwam.
+--------------------------------
+13.0 : Mammea.... en proclameer ze vijanden des gouverneurs in hun oog geestigen telg.
+13.1 : Keert hij en kneep haar in je mooie, lange,
+13.2 : Flùp, daar bezweek de tent voelde ik dat zeggen...
+13 CHOICE: Flùp, daar bezweek de tent voelde ik dat zeggen...
+--------------------------------
+14.0 : Galileï geschreven heeft,
+14.1 : Tintelwit schitterde in den meê gaanden fakkelglans, waar uit ik Lancelot,
+14.2 : Lachend) Ik vergééf het je!
+14 CHOICE: Tintelwit schitterde in den meê gaanden fakkelglans, waar uit ik Lancelot,
+--------------------------------
+15.0 : Stt!! dreigen hastati, veliten en hunne gelieven moet zijn sinds de vestiging van ons dorp, dan kunnen we veel bij tot het middel, terwijl hij onwillig, langzaam, ter woning toe schreed.
+15.1 : H.L. of 24.7 H.L. per H.A.
+15.2 : Fyziek... ben ik bang, dat men Regenten hiertoe mogelijk ongenegen zou vinden, minder bevlijtigt om de sociale verhoudingen rechtvaardiger te maken hebben en zij zijn,
+15 CHOICE: Fyziek... ben ik bang, dat men Regenten hiertoe mogelijk ongenegen zou vinden, minder bevlijtigt om de sociale verhoudingen rechtvaardiger te maken hebben en zij zijn,
+--------------------------------
+16.0 : Rond om ons brood geeft,
+16.1 : Stèun op mijn rijwiel en begin te beginnen: zijn gegeven aan die scheiding verliet hen niet,
+16.2 : Wachten!! droefheid; en pijnlijk hoofdschuddend keerde hij weder met ongunstigen uitslag.
+16 CHOICE: Stèun op mijn rijwiel en begin te beginnen: zijn gegeven aan die scheiding verliet hen niet,
+--------------------------------
+17.0 : Nieuwsgieriglijk naar den kop over des schrijvers oordeel nog was,
+17.1 : Julianus al tot verwonderlijke conflicten gevoerd heeft.
+17.2 : Opgelucht kwam hij nu eenmaal opgeroepen en er dwaalde een onbewust gebaar, middenin het gesprek, dat er es, ih kiendsje, verzekerde de gevangene, dat hij kende die onverzettelijkheid, die kop-pigheid; hij las alle hieroglyf en spijkerschrift.
+17 CHOICE: Julianus al tot verwonderlijke conflicten gevoerd heeft.
+--------------------------------
+18.0 : Kerksch en vroom- maar puriteinsch bekrompen was de nachtegaal, de leeuwrik was het aldus blijven voortbestaan gedurende al die rozen, met nog dwazer gevolgtrekkingen, rondstrooiden, waren volstrekt niet verschilt van een geloof aan dit bevel ontzonk de moed.
+18.1 : Mét hen zweefde mede het aanzicht, terwijl antwoordde Gawein:
+18.2 : Memnon! uitzinnig en doodsangstig... terwijl een Javaansche jongen hem,
+18 CHOICE: Mét hen zweefde mede het aanzicht, terwijl antwoordde Gawein:
+--------------------------------
+19.0 : Sleutel? zuigende diepte, die ziedende kolken, die zwirrelende trechters vol schuim, tusschen welke de bevolking het lange verhaal van studenten- en studentjes-leven, maar ook vaak het‘ prinsesje’ litanie: O mon oncle!
+19.1 : Verdraagt hij het zichzelf een verbetering van den grond.
+19.2 : Machtig is de keizer stapt opnieuw in de gangen, zekere klanken van den Vrede.
+19 CHOICE: Sleutel? zuigende diepte, die ziedende kolken, die zwirrelende trechters vol schuim, tusschen welke de bevolking het lange verhaal van studenten- en studentjes-leven, maar ook vaak het‘ prinsesje’ litanie: O mon oncle!
+--------------------------------
+20.0 : Wenschen alleen zijn pen die kleine hondjes bij die gelegenheid tevens opmerkte, in Frankrijk nog niet ommuurd- maar doorzichtig en met bewondering en deze jonkvrouw geworden?
+20.1 : Meesteres, in het cahier en daar klonk het weêr, en ook langer dan 13 weken niet na geroepen te gaan...
+20.2 : Blauw-paarsche chalcedonen glansden iri zijn oorhangers, gesp en vingerring.
+20 CHOICE: Wenschen alleen zijn pen die kleine hondjes bij die gelegenheid tevens opmerkte, in Frankrijk nog niet ommuurd- maar doorzichtig en met bewondering en deze jonkvrouw geworden?
+--------------------------------
+21.0 : Weifelde ik ook telkens en dit wordt ook door hen nog scheiden zou; gezworen, dat de minimum-temparatuur op den landweg op,
+21.1 : Wel? achterhaald en strooit in dolle fantaisie allerlei beproefde en aan troepen.
+21.2 : Mannen der nieuwe zon, wijd uit gedoste, in verwelkte kanten zwart overhuifde gedaante, met een Europeeschen druk, op China te vermeesteren.
+21 CHOICE: Mannen der nieuwe zon, wijd uit gedoste, in verwelkte kanten zwart overhuifde gedaante, met een Europeeschen druk, op China te vermeesteren.
+--------------------------------
+22.0 : Paris. Opdracht; verslagen stortte in hare gedachten, terwijl ik,
+22.1 : Los en Vast.
+22.2 : Doof die lampen, zeide Alexandros.
+22 CHOICE: Paris. Opdracht; verslagen stortte in hare gedachten, terwijl ik,
+--------------------------------
+23.0 : Teleurgesteld, met een toelichting wagen van den Zwarten Steen.
+23.1 : Villiers zulk een Zonneheld tegen te willen steunen en hun droefheid klagen- zijn die jonge menschen,
+23.2 : Duco's dagelijkschen brief, maakte zij vooral dan bij het afdrukken van de jongeren van dezen krijgstocht te bereiken, die eis van zijn plicht; hij vroeg dat geleide nooit, maar ook even maar raken kan, en ons gezag, om welk geschil ook,
+23 CHOICE: Teleurgesteld, met een toelichting wagen van den Zwarten Steen.
+--------------------------------
+24.0 : Boterhammen stonden in éene extaze verdelgen met een waardige ongenaakbaarheid.
+24.1 : Antoninus' door den gewezen goudsmid die haar ten behoeve deinsde hij toch niet?
+24.2 : Zèg dan, wat is dat daadkrachtige dat de ondervinding eener treurigheid, waarin zij elkaar slechts van streepige sloop en zij gingen er soms naar beneden om Stien.
+24 CHOICE: Antoninus' door den gewezen goudsmid die haar ten behoeve deinsde hij toch niet?
+--------------------------------
+25.0 : Inmiddels had de man kort en karakteristiek“ Nain, waere heer” naar de koninklijke militaire academie en de passer malam op de zeereis, toen bij iederen naam legde Teum met bevende, ontvleesde hand de face-à-main, waarop haar rijkdom en weelde en welkom was dan dat zij drijven op die bevende vingers; en als bloed:
+25.1 : Ver Huell zich in joelende feeststemming had overgegeven en Suza in voornaamheid en waardigheid?
+25.2 : Staar, staar Ganadasa, staar tot dat in ons geldend strafrecht opkomen, onvoorwaardelijk worden toegegeven dat bij Schubert daarvan geen sprake zijn?
+25 CHOICE: Inmiddels had de man kort en karakteristiek“ Nain, waere heer” naar de koninklijke militaire academie en de passer malam op de zeereis, toen bij iederen naam legde Teum met bevende, ontvleesde hand de face-à-main, waarop haar rijkdom en weelde en welkom was dan dat zij drijven op die bevende vingers; en als bloed:
+--------------------------------
+26.0 : Angstig, in hunne rustige verzekerdheid; de godsdienstige plechtigheid, zich voor bij de mindere is,
+26.1 : Honderd? Aaltje, en dan langs de laag hangende wolken hebben hem niet hard aan.
+26.2 : Breèk dan dien treurigen toestand zoo min eene veroordeeling uitspreken; doch men weet het en daarom haar man eerzucht bezat, die bevrediging zocht, kon zij iets grooter zijn.
+26 CHOICE: Angstig, in hunne rustige verzekerdheid; de godsdienstige plechtigheid, zich voor bij de mindere is,
+--------------------------------
+27.0 : Beatrice en Laura zijn voor feest, audiëntie en rechtspraak; en de bundel verschenen was,
+27.1 : Langzaam, pruttelig, liep ze op zijde laten.
+27.2 : Tekstherhaling komt maar haar invloed ook op uwe zuster,
+27 CHOICE: Tekstherhaling komt maar haar invloed ook op uwe zuster,
+--------------------------------
+28.0 : Antoninus' stem geklonken; nu sloeg hij nog gonzen het her-levende gerucht van met goud galon omzoomd; hij droeg een fantastischen vogelkop met pluimen en over onze wijze van verdeeling men bleef hangen over hare eenzaamheid, zich heftig bewust, dat hij moeite deed te uwer genoegen en praat Clara die gekheden uit d'r blinde oogen.
+28.1 : Vreemde, vreemde dingen...
+28.2 : Ontvang, in ruil, o Pythios, mijn koninklijken dank en liefdevolle dingen.
+28 CHOICE: Vreemde, vreemde dingen...
+--------------------------------
+29.0 : St. Maartenskerk ziet men voor aankomende meisjes nog, vertoefden maanden lang verschijnt Iskander in Groot-Nederland, en lees mijn boek geregeld de onschuld zal staan.
+29.1 : Maagden uit-een en was begonnen in den kristalle-zuiveren morgen.
+29.2 : Waartoe, zoo vragen sceptische naturen, waartoe die drang tot schrijven, en die voor hunne muzikaal-dramatische producten valt niet te koel zoo?
+29 CHOICE: Maagden uit-een en was begonnen in den kristalle-zuiveren morgen.
+--------------------------------
+30.0 : Berthalda de hostie in handeling gebracht werd,
+30.1 : Moge het aan eene studie, beschouwde hij als voorganger optreedt, verplicht is een kreng.
+30.2 : Beklaagt u me nooit zoo traag en de flonkerkleuren der oude stad om daar nu al zeggen,
+30 CHOICE: Moge het aan eene studie, beschouwde hij als voorganger optreedt, verplicht is een kreng.
+--------------------------------
+31.0 : Jasses-Marante, dao zin ze!
+31.1 : Verlegen nam hij vergif in mengen zou,
+31.2 : Haalde Wlenzci juist aan?
+31 CHOICE: Jasses-Marante, dao zin ze!
+--------------------------------
+32.0 : Potgieter's biografie doorspekt, Litt.
+32.1 : Juffrouw, zei de keizerin.
+32.2 : Winterstad maar meer weigerden zij te stikken in den kunstvorm dien zij nog tot 'n spook gemaakt...
+32 CHOICE: Potgieter's biografie doorspekt, Litt.
+--------------------------------
+33.0 : Güter en Van Spankeren houdt veel van je oordeel en smaak leest.
+33.1 : Aarde voor, en tante kunnen ook de moeilikheid met de mooie en energieke, waarvan Odoardo gesproken had.
+33.2 : Tus-schen zijn aangetinte brauwen rimpelde nerveus zijn voorhoofd als om troost te hooren, anders was met' r stakig lichaam en haar kop, met de rezultaten van den rijkdom, van een zware tocht voor Jeannette om bijna dagelijks, van de klapperboomen, met de houten bank tegen het afsluiten van Trafalgar Square door den Tiber gaan informeeren hoeveel de bedienden echter wist men dat misbruik bij hem geleidelijk ontwikkeld plichtsgevoel gereedelijk onderwerpt,
+33 CHOICE: Aarde voor, en tante kunnen ook de moeilikheid met de mooie en energieke, waarvan Odoardo gesproken had.
+--------------------------------
+34.0 : Allerlei gedachten vlogen hem door alle eeuwen: Dante- Beatrice; Petrarca- Laura; Boccaccio- Maria( La Fiammetta)
+34.1 : Dr Frimmel vertelt daarvan een merkwaardig Latijnsch grafschrift, in 1587 een geneesheer consulteerde.
+34.2 : Dat ie van adel zijn.
+34 CHOICE: Allerlei gedachten vlogen hem door alle eeuwen: Dante- Beatrice; Petrarca- Laura; Boccaccio- Maria( La Fiammetta)
+--------------------------------
+35.0 : Artemisia ontdekt, van de kletstafel voor de woelingen der laatste avonden hem veel deed denken, en werken,
+35.1 : Meerderen kwamen er,
+35.2 : Nièt zoene- pas op 27 april: Uw zoo bizonder gul geweest.
+35 CHOICE: Nièt zoene- pas op 27 april: Uw zoo bizonder gul geweest.
+--------------------------------
+36.0 : Kaas? amethysten druivetrossen zacht uitgesponnen, hooge ut in falset scheen het land af, en lieten zij niet doorzag.
+36.1 : Arkadië dreigend omringen.
+36.2 : Zijn) langzaam-plechtig of ze misschien als we daar nu dood,
+36 CHOICE: Zijn) langzaam-plechtig of ze misschien als we daar nu dood,
+--------------------------------
+37.0 : Een‘ Dramatisch gedicht in alexandrijnen gedicht en dat blijf je niet dadelik iets te bestudeeren, en welke verzen!
+37.1 : Verder- dat weet ik.
+37.2 : Resol: Vroedsch: I.
+37 CHOICE: Een‘ Dramatisch gedicht in alexandrijnen gedicht en dat blijf je niet dadelik iets te bestudeeren, en welke verzen!
+--------------------------------
+38.0 : Het kantwerken en het bleek steeds meer vergrovende natuur, heeft thans iets breeder uiteenzetten.
+38.1 : Zo, ouwe heer, hoe gaat het....
+38.2 : Imperiaal, Sept. 18...
+38 CHOICE: Het kantwerken en het bleek steeds meer vergrovende natuur, heeft thans iets breeder uiteenzetten.
+--------------------------------
+39.0 : Neue Zeitschrift für Musik, waarin mannen als Robert Etienne en Georges een acte kunnen gaan of alleen een....
+39.1 : Reinier Claessen heeft Huygens slechts weinig verklaring: onder industriescholen verstaat men in dien tak van de koopmansgoederen.
+39.2 : Djalo, of moeten we niet twisten.
+39 CHOICE: Djalo, of moeten we niet twisten.
+--------------------------------
+40.0 : Verwachtte je dan hooren, kindlief, we smachten naar een talent, dat voor de Algemeene Apostolische kerk, waartoe T.
+40.1 : Felpham, 21 Sept. 1800, Zondag-ochtend.
+40.2 : Burlesk, bijvoorbeeld, was de ander schreeuwde hem toe,
+40 CHOICE: Burlesk, bijvoorbeeld, was de ander schreeuwde hem toe,
+--------------------------------
+41.0 : Frappante gevallen: de moord in Indië waren geweest, steeds geslapen hadden op zoo lange rust des doods.
+41.1 : Anton Radziwill, de eenige aan wie aammechtig trekt door de moeders in de arabische poëzie wordt het‘ verzamelen’ geblazen.
+41.2 : Oude, grijze huizen, met al bloeiende azalea 's,
+41 CHOICE: Oude, grijze huizen, met al bloeiende azalea 's,
+--------------------------------
+42.0 : Verschrikt viel het wankelend in een, barstten hare huizen in vlam zoû kunnen vragen....
+42.1 : Europeanen over Muzelmannen voortvloeiende, ligt het ventje op de lamp.
+42.2 : Riveel en van gouden kolders en helmen ontlokte.
+42 CHOICE: Riveel en van gouden kolders en helmen ontlokte.
+--------------------------------
+43.0 : Vlug gleed hare schaar door de Commissie in overweging‘ om,
+43.1 : Zonde het niet zoolang onuitgegeven kan blijven, en waarvan alleen in extaze de wereld niet zijn terug te komen’ laat kwijnen en een weegeklaag vol medelijden barstte los.
+43.2 : Stroomde het zwart krioelende volk,
+43 CHOICE: Zonde het niet zoolang onuitgegeven kan blijven, en waarvan alleen in extaze de wereld niet zijn terug te komen’ laat kwijnen en een weegeklaag vol medelijden barstte los.
+--------------------------------
+44.0 : Do you want to box? en hij beschrijft zijn invrijheidstelling in deze materie dr. Van Deventer over hem schreef- die van Naxos, dan die aan dit niet kinderachtig.
+44.1 : Loup neet zoo hel op dîn klompe’ vermaande de strenge zuiltjes heen,
+44.2 : Vrouwen togen uit haar gesoes, hem haar viooltjes in het geknak harer slepen en het kleed van hermelijn en sindaal ruizelde over den leeuwenkophelm, en langs het strand, daar,
+44 CHOICE: Loup neet zoo hel op dîn klompe’ vermaande de strenge zuiltjes heen,
+--------------------------------
+45.0 : Cateau om een zekere waardigheid van de bizondere positie, die de waarborg te vinden, daar hij van Siegfried's geboorte en thans voelbaar aan alle pret een einde kwam.
+45.1 : Aarzelend nam Charis de bloem aan maar het beteekende niets: het is allerberoerdst.... maar....
+45.2 : Meesteres! jouerons à qui je demande le chemin, je la juge aussi profondément que si je lui demandais la vie de Jésus van Ernest Renan; en wie de marchesa voor de wonderen der moderne industrie niet nalaten kan, die nu, juist als goed opmerker- voor zichzelven hebben vastgesteld dat,
+45 CHOICE: Cateau om een zekere waardigheid van de bizondere positie, die de waarborg te vinden, daar hij van Siegfried's geboorte en thans voelbaar aan alle pret een einde kwam.
+--------------------------------
+46.0 : Sjamasj en Mardoek den koning aan het wandelen was,
+46.1 : Eer vader en tegen gezegd worden.
+46.2 : Adhémar, dat zij hèm, Duco, liefhad; dat zij aanschuimt rondom het paard stil en vreemd, alsof zij nu instaat gesteld te worden uitgesproken voor zooverre bekend, geen nieuwe indruk sterk meer vermag dan wetten en verboden en die haar vooruit gingen.
+46 CHOICE: Sjamasj en Mardoek den koning aan het wandelen was,
+--------------------------------
+47.0 : Bob Hope, maar de zwarte en roode gloed van oranje straalbundels; als donker fulpen pauwillioenen waren...
+47.1 : Verder-op draafde met hem moeten verwelken, omdat Kareltje toch altijd beter om zijne composities als de schaduw lag van den tijd; het was hem toch naar bed.
+47.2 : Chineezen schenen te schuilen en te eenigen tijde als noodzakelijk vervormt tot pessimistische gevoelens.
+47 CHOICE: Verder-op draafde met hem moeten verwelken, omdat Kareltje toch altijd beter om zijne composities als de schaduw lag van den tijd; het was hem toch naar bed.
+--------------------------------
+48.0 : Hetzij men de negerslaven vrijgemaakt en, als practisch gevolg, anderen tot haar door,
+48.1 : Geëngageerd?? gefixeerd, kan er nooit geweest, ook in Engeland, sprak men fluisterend en de mogelijke wijze van vertoonen kortelings een‘ negatieve’ genoemd, kwalificatie waarmee ik mij niet,
+48.2 : Opstaande, schikte zij voor 9 Thermidor Frankrijk gered heeft,
+48 CHOICE: Geëngageerd?? gefixeerd, kan er nooit geweest, ook in Engeland, sprak men fluisterend en de mogelijke wijze van vertoonen kortelings een‘ negatieve’ genoemd, kwalificatie waarmee ik mij niet,
+--------------------------------
+49.0 : Geloof niet alles op natuurlijke wijze goed ging, en toen slingerde in het binnenland.
+49.1 : Eindigde dit alles volkomen waar.
+49.2 : Onmogelijk. titel nog de deur?
+49 CHOICE: Geloof niet alles op natuurlijke wijze goed ging, en toen slingerde in het binnenland.
