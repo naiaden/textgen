@@ -8,7 +8,7 @@ import random
 from languagemodel import LanguageModel
 from textgenerator import TextGenerator
 from normaliser import FrogNormaliser, NormaliserFactory
-#from sentence_semantics import SentenceSemantics
+from sentence_semantics import SentenceSemantics
 
 config = configparser.ConfigParser()
 config.read('witc.ini')
