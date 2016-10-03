@@ -26,11 +26,12 @@ else:
 	print("+ Reading from text file")
 	print(" -- Currently not implemented")
 
+print(data[0])
 	
 NormaliserFactory(data, config['INPUT']['Normalisers'])
 
-#print("+ Creating language model")
-#lm = LanguageModel(data)
+print("+ Creating language model")
+lm = LanguageModel(data)
 
 #print("+ Loading Word2Vec model")
 #ss = SentenceSemantics()
