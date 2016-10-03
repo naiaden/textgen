@@ -19,7 +19,7 @@ if cache_file:
         data = json.load(data_file)
 
 print("+ Normalising frogged data")
-fn = FrogNormaliser(data)
+FrogNormaliser(data)
 
 print("+ Creating language model")
 lm = LanguageModel(data)

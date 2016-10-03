@@ -60,7 +60,7 @@ class LanguageModel:
     
     # Store all the sentence final words with punctuation
     def last_word_feature(self, sentence):
-        if(sentence and sentence[-1]['word'][-1] in string.punctuation):
+        if(sentence and sentence[-1]['word'][-1] in ['.', '?', '!']):#string.punctuation):
             self.last_words[sentence[-1]['word']] = self.last_words.get(sentence[-1]['word'], 1)
     
     # Store all the sentence initial words with capitals
