@@ -135,4 +135,5 @@ class LanguageModel:
     def __init__(self, sentences):
         #print("number of sentences: " + str(len(sentences)))
         self.generate_features(sentences)
+        #print(self.ngrams.keys())
 
