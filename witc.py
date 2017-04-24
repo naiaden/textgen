@@ -7,7 +7,7 @@ import random
 
 from languagemodel import LanguageModel
 from textgenerator import TextGenerator
-from normaliser import FrogNormaliser
+from normaliser import FrogNormaliser, NormaliserFactory
 from sentence_semantics import SentenceSemantics
 
 config = configparser.ConfigParser()
@@ -22,9 +22,11 @@ if cache_file:
     print("+ Reading cache file")
     with open(cache_file) as data_file:
         data = json.load(data_file)
+else:
+	print("+ Reading from text file")
+	print(" -- Currently not implemented")
 
-print("+ Normalising frogged data")
-fn = FrogNormaliser(data)
+NormaliserFactory(data, config['INPUT']['Normalisers'])
 
 print("+ Creating language model")
 lm = LanguageModel(data)
@@ -47,5 +49,5 @@ with open(testout,'w',encoding='utf-8') as t_out:
             t_out.write(str(i) + '.' + str(j) + ' : ' + ' '.join(candidates[j][0]) + '\n')
         t_out.write(str(i) + ' CHOICE: ' + ' '.join(target) + '\n')
  
-#print(tg.generate_paragraph()) 
+##print(tg.generate_paragraph()) 
 

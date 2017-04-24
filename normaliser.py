@@ -1,5 +1,15 @@
 from itertools import filterfalse
 
+class NormaliserFactory:
+	
+	def __init__(self, data, normalisers):
+		for normaliser in normalisers.split(","):
+			if normaliser == "Frog":
+				print("+ Normalising frogged data")
+				FrogNormaliser(data)
+			else:
+				print("x " + normaliser + " is not implemented")
+
 class FrogNormaliser:
     """
         We append the punctuation to their word.
