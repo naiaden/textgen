@@ -26,30 +26,29 @@ else:
 	print("+ Reading from text file")
 	print(" -- Currently not implemented")
 
-print(data[0])
-	
 NormaliserFactory(data, config['INPUT']['Normalisers'])
 
 print("+ Creating language model")
 lm = LanguageModel(data)
 
-#print("+ Loading Word2Vec model")
-#ss = SentenceSemantics()
-#ss.load_model(w2v_model)
+print("+ Loading Word2Vec model")
+ss = SentenceSemantics()
+ss.load_model(w2v_model)
 
-#print("+ Generating text")
-#tg = TextGenerator(lm, minimum_paragraph_length)
-#with open(testout,'w',encoding='utf-8') as t_out:
-    #target = tg.generate_sentence()
-    #t_out.write('start : ' + ' '.join(target) + '\n')
-    #for i in range(50):
-        #sources = [tg.generate_sentence() for x in range(150)]
-        #candidates = ss.return_sentence_candidates(target,sources)
-        #target = random.choice([x[0] for x in candidates])
-        #t_out.write('--------------------------------\n')
-        #for j in range(len(candidates)):
-            #t_out.write(str(i) + '.' + str(j) + ' : ' + ' '.join(candidates[j][0]) + '\n')
-        #t_out.write(str(i) + ' CHOICE: ' + ' '.join(target) + '\n')
+print("+ Generating text")
+tg = TextGenerator(lm, minimum_paragraph_length)
+with open(testout,'w',encoding='utf-8') as t_out:
+    target = tg.generate_sentence()
+    t_out.write('start : ' + ' '.join(target) + '\n')
+    for i in range(50):
+        sources = [tg.generate_sentence() for x in range(150)]
+        candidates = ss.return_sentence_candidates(target,sources)
+        target = random.choice([x[0] for x in candidates])
+        t_out.write('--------------------------------\n')
+        for j in range(len(candidates)):
+            t_out.write(str(i) + '.' + str(j) + ' : ' + ' '.join(candidates[j][0]) + '\n')
+        t_out.write(str(i) + ' CHOICE: ' + ' '.join(target) + '\n')
+
  
 ##print(tg.generate_paragraph()) 
 

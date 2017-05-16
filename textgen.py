@@ -145,7 +145,8 @@ def fill_up_dict(words):
 
     return style_dict
 
-
+# Reads text from a file, tokenizes it, and creates a style profile
+# consisting of: first words, final words, unigrams and bigrams (style dict)
 def make_style_dict(filename):
     sentences=read_text(filename)
     first_words = []
@@ -172,10 +173,13 @@ def make_style_dict(filename):
     return style_dict,first_words,last_words
 
 
-def generate_sentence(style_dict,last_words,firstword):
-
+def generate_sentence(style_dict,first_words, last_words,first_word = ""):
+    
+    if not first_word:
+        first_word = random.choice(first_words)
+    
     sentence = []
-    word = firstword
+    word = first_word
     sentence.append(word)
 
     while not word in last_words:
@@ -188,11 +192,11 @@ def generate_sentence(style_dict,last_words,firstword):
                 # bigram model
 
                 nextword=random.choice(style_dict[previous_word+" "+word])
-                print ("bigram model:", previous_word, word,"->",nextword)
+##                print ("bigram model:", previous_word, word,"->",nextword)
                 word = nextword
             else:
                 nextword=random.choice(style_dict[word])
-                print ("unigram model:",word,"->",nextword)
+##                print ("unigram model:",word,"->",nextword)
                 word = nextword
         else:
             # otherwise (beginning of sentence; we only have 1 word), use unigram model
@@ -203,7 +207,9 @@ def generate_sentence(style_dict,last_words,firstword):
         #print ("sentence:", sentence)
 
     # generated word was a sentence-final word -> generate the first word for the next sentence
-    next_first_word = random.choice(style_dict[word])
+#    print("hoi")
+#    print(style_dict[word])
+    next_first_word = random.choice(first_words)#random.choice(style_dict[word])
     return sentence, next_first_word
 
 
@@ -221,7 +227,7 @@ def print_story(style_dict,first_words,last_words):
         wordcount = 1
         while wordcount < minimum_paragraph_length:
             # generate sentences as long as we haven't reached the minimum paragraph length
-            sentence,next_first_word = generate_sentence(style_dict,last_words,firstword)
+            sentence,next_first_word = generate_sentence(style_dict,first_words, last_words,firstword)
             # the start of a sentence is a random word based on the last two words of the previous sentence.
             sentencetext = " ".join(sentence)
             sentences.append(sentencetext)
@@ -241,6 +247,7 @@ def style_generator(fname):
     print ("Create story...")
     story=print_story(style_dict,first_words,last_words)
     story = re.sub("\n\n ","\n\n",story)
+    print(story)
     out = open(outputfile,'w')
     out.write(story)
     out.close()
