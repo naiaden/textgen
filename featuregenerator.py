@@ -42,7 +42,7 @@ def tokenize_txt(infile, configfile):
 
     return sentences
 
-def frog_txt(infile):
+def frog_txt(infile,config):
     """
     Function to retrieve tokenized and pos-tagged sentences from a file, used as input for training a language model. Punctuation is included in the output.
 
@@ -62,7 +62,7 @@ def frog_txt(infile):
 
     # initialize frogger
     fo = frog.FrogOptions(ner=False, chunking=False, mwu=False, lemma=False, morph=False, daringmorph=False)
-    frogger = frog.Frog(fo)
+    frogger = frog.Frog(fo,config)
 
     numlines = len(lines)
     if numlines > 1000:
@@ -75,6 +75,8 @@ def frog_txt(infile):
     for i, line in enumerate(lines):
         if i in reports:
             print(i, 'of', numlines, 'lines frogged.')
+        # if i == 1500:
+        #     break
         # frog    
         frogged = frogger.process(line)
         # add each token to the sentence...

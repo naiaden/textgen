@@ -17,9 +17,10 @@ sentences = []
 for json_corpus in json_corpora:
     print('loading in sentences for',json_corpus)
     with open(json_corpus,'r',encoding='utf-8') as corpus_in:
-        corpus_str = corpus_in.read()
-    corpus_json = json.loads(corpus_str)
-    sentences.extend([[token['word'] for token in sentence if token['pos'] != 'LET()'] for sentence in corpus_json])
+        corpus_lines = corpus_in.read().strip().split('\n')
+    for line in corpus_lines:
+        line_json = json.loads(line)
+        sentences.append([token['word'] for token in line_json if token['pos'] != 'LET()'])
 
 print('done. loaded',len(sentences),'sentences')
 
