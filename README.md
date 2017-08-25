@@ -18,3 +18,14 @@ B. Generate new text:
 Minimal paragraph length and number of paragraphs are user-defined in the script (TODO: redefine as arguments)
 
 The output is printed to inputfile.random[0-9]+
+
+
+# Usage
+
+Pre-training models:
+
+python generate_features.py /vol/bigdata2/datasets2/WritersintheCloud/kellendonktxt/kellendonk.feats.json /vol/customopt/lamachine/share/frog/nld/frog.cfg /vol/bigdata2/datasets2/WritersintheCloud/kellendonktxt/Verzameld\ werk\ -\ Frans\ Kellendonk.txt
+
+python train_lm.py /vol/bigdata2/datasets2/WritersintheCloud/kellendonktxt/kellendonk.feats.json /vol/bigdata2/datasets2/WritersintheCloud/kellendonktxt/kellendonk.lm.json
+
+Online text generation:
