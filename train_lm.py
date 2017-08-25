@@ -1,8 +1,9 @@
 
-import languagemodel
 import json
 import sys
 import random
+
+import languagemodel
 
 infile = sys.argv[1]  # feats.json file
 out_lm = sys.argv[2]  # the name of the lm to save
