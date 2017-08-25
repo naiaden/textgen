@@ -2,13 +2,9 @@
 
 import string # for the bigrams
 import random # for get_first_word
+import json   # save and load target
 
 class LanguageModel:
-    'Combines the features into a language model'
-    first_words = {}
-    last_words = {}
-    ngrams = {} # Dict(count:int, followers:[])
-    pos_ngrams = {} # Dict(count:int, followers:[]
     
     def get_first_word(self):
         return random.choice(list(self.first_words.keys()))
@@ -132,8 +128,28 @@ class LanguageModel:
         print("pos_ngrams:")
         print(self.pos_ngrams)
 
-    def __init__(self, sentences):
+    def load_model(self, model_saved):
+        # read in target
+        with open(model_saved, 'r', encoding = 'utf-8') as file_in:
+            model = json.load(file_in)
+        self.first_words = model[0]
+        self.last_words = model[1]
+        self.ngrams = model[2]
+        self.pos_ngrams = model[3]
+
+    def save_model(self, outfile):
+        # write target to file
+        with open(outfile, 'w', encoding = 'utf-8') as file_out:
+            json.dump([self.first_words,self.last_words,self.ngrams,self.pos_ngrams], file_out)
+
+    def train_model(self, sentences):
         #print("number of sentences: " + str(len(sentences)))
         self.generate_features(sentences)
         #print(self.ngrams.keys())
 
+    def __init__(self):
+        'Combines the features into a language model'
+        self.first_words = {}
+        self.last_words = {}
+        self.ngrams = {} # Dict(count:int, followers:[])
+        self.pos_ngrams = {} # Dict(count:int, followers:[]

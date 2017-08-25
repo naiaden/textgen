@@ -16,7 +16,8 @@ with open(infile,'r',encoding='utf-8') as f_in:
 sentences = [json.loads(line) for line in file_lines]
 
 print('training language model')
-lm = languagemodel.LanguageModel(sentences)
+lm = languagemodel.LanguageModel()
+lm.train_model(sentences)
 tg = textgenerator.TextGenerator(lm,10)
 
 print('generating candidates')
