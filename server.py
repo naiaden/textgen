@@ -4,9 +4,47 @@ from sqlalchemy import create_engine
 from json import dumps
 from flask.ext.jsonpify import jsonify
 
+
+##
+import configparser
+import json
+import random
+
+from languagemodel import LanguageModel
+from textgenerator import TextGenerator
+from normaliser import FrogNormaliser, NormaliserFactory
+from sentence_semantics import SentenceSemantics
+##
+
 db_connect = create_engine('sqlite:///witc.db')
 app = Flask(__name__)
 api = Api(app)
+
+config = configparser.ConfigParser()
+config.read('witc.ini')
+
+cache_file = config['INPUT']['CacheFile']
+minimum_paragraph_length = int(config['OUTPUT'].get('MinimumParagraphLength', 30))
+w2v_model = config['INPUT']['W2V']
+testout = config['OUTPUT']['StoryFile']
+
+if cache_file:
+    print("+ Reading cache file")
+    with open(cache_file) as data_file:
+        data = json.load(data_file)
+else:
+        print("+ Reading from text file")
+        print(" -- Currently not implemented")
+
+NormaliserFactory(data, config['INPUT']['Normalisers'])
+
+print("+ Creating language model")
+lm = LanguageModel(data)
+
+print("+ Loading Word2Vec model")
+ss = SentenceSemantics()
+ss.load_model(w2v_model)
+
 
 @app.errorhandler(404)
 def not_found(error):
@@ -68,6 +106,22 @@ class Vote(Resource):
             result = {'invalid_input': sentence_id}
             return jsonify(result)
 
+# This class needs attention, but cannot test without data
+class Suggestions(Resource):
+    def get(self, author_id):
+        tg = TextGenerator(lm, minimum_paragraph_length)
+        target = tg.generate_sentence()
+        for i in range(50):
+            sources = [tg.generate_sentence() for x in range(150)]
+            candidates = ss.return_sentence_candidates(target,sources)
+            target = random.choice([x[0] for x in candidates])
+            #
+            conn = db_connect.connect()
+            query = conn.execute("insert into Sentences (sentence_id, sentence, author_id) values (%d, %s, %d) " %int(sentence_id), target, %int(author_id))
+            result = {'sentence_id': query.lastrowid}
+            return jsonify(result)
+
+
 api.add_resource(Sentences, '/sentences')
 api.add_resource(Stories, '/stories')
 api.add_resource(Authors, '/authors')
@@ -76,6 +130,7 @@ api.add_resource(Votes, '/votes')
 api.add_resource(Sentence, '/sentence/<sentence_id>')
 api.add_resource(Story, '/story/<story_id>')
 api.add_resource(Vote, '/vote/<sentence_id>')
+api.add_resource(Suggestions, '/suggestion/<author_id>')
 
 if __name__ == '__main__':
     app.run(port='5003')
