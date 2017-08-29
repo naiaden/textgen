@@ -1,6 +1,6 @@
 class TextGenerator:
     # Generates one sentence (list-based) until a sentence final words occurs
-    def generate_sentence(self):
+    def generate_sentence(self): # target = word or pos
         sentence = []
         sentence.append(self.lm.get_first_word())
         

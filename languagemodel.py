@@ -39,17 +39,30 @@ class LanguageModel:
                     return random.choice(list(followers.keys()))
         return self.get_unigram(w2)
     
+    # Get word, based on the trigram context
+    def get_trigram(self, w1, w2, w3, target=None):
+        if target is None:
+            target = self.ngrams
+        
+        if w1 in target:
+            if w2 in target[w1]['followers']:
+                if w3 in target[w1]['followers'][w2]['followers']:
+                    followers = target[w1]['followers'][w2]['followers'][w3]['followers']
+                    if followers:
+                        return random.choice(list(followers.keys()))
+        return self.get_unigram(w3)
+    
     # Get word, based on a sentence
     def get_next_word(self, sentence):
         if not sentence:
             return self.get_first_word()
-        
-        if len(sentence) == 1:
+        elif len(sentence) == 1:
             return self.get_unigram(sentence[0])
-        
-        return self.get_bigram(sentence[-2], sentence[-1])
-    
-    
+        elif len(sentence) == 2:
+            return self.get_bigram(sentence[-2], sentence[-1])
+        else:
+            return self.get_trigram(sentence[-3], sentence[-2], sentence[-1])
+
     def is_last_word(self, word):
         if word in self.last_words:
             return True
@@ -102,7 +115,21 @@ class LanguageModel:
                 else:
                     target[w1]['followers'][w2]['followers'][w3] = {}
                     target[w1]['followers'][w2]['followers'][w3]['count'] = 1
-                    #target[w1]['followers'][w2]['followers'][w3]['followers'] = {}
+                    target[w1]['followers'][w2]['followers'][w3]['followers'] = {}
+
+    # Store all trigrams (token unigrams if code is 'word', pos unigrams if code is 'pos'), in a trie structure
+    def fourgram_feature(self, sentence, code, target): # code = 'word', 'pos', target = ngrams, pos_ngrams
+        if(sentence):
+            for fourgram in [sentence[i:i+4] for i in range(len(sentence)-3)]:
+                w1 = fourgram[0][code]
+                w2 = fourgram[1][code]
+                w3 = fourgram[2][code]
+                w4 = fourgram[3][code]
+                if w4 in target[w1]['followers'][w2]['followers'][w3]['followers']:
+                    target[w1]['followers'][w2]['followers'][w3]['followers'][w4]['count'] = 1 + target[w1]['followers'][w2]['followers'][w3]['followers'][w4]['count']
+                else:
+                    target[w1]['followers'][w2]['followers'][w3]['followers'][w4] = {}
+                    target[w1]['followers'][w2]['followers'][w3]['followers'][w4]['count'] = 1
     
     # Normally this would be according to some fancy design pattern with registration. But today it isn't
     def generate_features(self, sentences):
@@ -115,6 +142,8 @@ class LanguageModel:
             self.bigram_feature(sentence, 'pos', self.pos_ngrams)
             self.trigram_feature(sentence, 'word', self.ngrams)
             self.trigram_feature(sentence, 'pos', self.pos_ngrams)
+            self.fourgram_feature(sentence, 'word', self.ngrams)
+            self.fourgram_feature(sentence, 'pos', self.pos_ngrams)
     
     def print_features(self):
         print("First words:")
