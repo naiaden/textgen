@@ -46,6 +46,8 @@ class SentenceSemantics:
         sentence_similarity_sorted = sorted(sentence_similarity,key=lambda k : k[1],reverse=True)
         return sentence_similarity_sorted
 
-    def return_sentence_candidates(self,target_sentence,source_sentences,candidate_ranks=[1,10,50]):
+    def return_sentence_candidates(self,target_sentence,source_sentences,n_candidates):
+        possible_ranks = [1,2,10,20,50,100,200,500,1000,2000,5000,9999]
+        candidate_ranks = possible_ranks[:n_candidates]
         sorted_sentences = self.rank_sentences_similarity(target_sentence,source_sentences)
         return [sorted_sentences[i] for i in candidate_ranks]
