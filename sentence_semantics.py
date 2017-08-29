@@ -1,5 +1,6 @@
 
-from gensim.models import Word2Vec
+#from gensim.models import Word2Vec
+import gensim
 
 
 class SentenceSemantics:
@@ -14,7 +15,7 @@ class SentenceSemantics:
         self.model.save_word2vec_format(outfile,binary=True)
 
     def load_model(self,modelfile):
-        self.model = Word2Vec.load_word2vec_format(modelfile,binary=True)
+        self.model = gensim.models.KeyedVectors.load_word2vec_format(modelfile,binary=True)
 
     def remove_stopwords_sentence(self,sentence,stopwords):
         clean_sentence = list(set(sentence) - stopwords)

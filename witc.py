@@ -19,7 +19,7 @@ w2v_model = config['INPUT']['W2V']
 testout = config['OUTPUT']['StoryFile']
 
 if cache_file:
-    print("+ Reading cache file")
+    print("+ Reading cache file") #couperus_feats.json
     with open(cache_file) as data_file:
         data = json.load(data_file)
 else:
@@ -29,7 +29,8 @@ else:
 NormaliserFactory(data, config['INPUT']['Normalisers'])
 
 print("+ Creating language model")
-lm = LanguageModel(data)
+lm = LanguageModel()
+lm.load_model(data)
 
 print("+ Loading Word2Vec model")
 ss = SentenceSemantics()
