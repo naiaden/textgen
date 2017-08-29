@@ -1,3 +1,33 @@
+# API
+
+The server uses a RESTful API, with GET and PUT requests.
+
+## Sentences
+
+/sentences shows all sentences used in all stories (GET)
+/sentence/<sentence_id> shows the sentence with that id (GET)
+/addsentence/<story_id> adds a sentence to a story (PUT), i.e. curl -X PUT http://localhost:5003/addsentence/3 -d data="Het sneeuwde met groote vlokken."
+
+## Stories
+
+/stories shows all stories with their sentences and their positions (GET)
+/story/<story_id> shows the story with its sentences and positions (GET)
+/createstory<author_id> creates a new (empty) story for an author (GET)
+
+## Author
+
+/authors shows a list of all available authors (GET)
+
+## Votes
+
+/votes shows all votes that have been cast (GET)
+/vote/<suggestion_id> cast vote for suggestion, which turns the suggestion into a sentence, and is added to the story (GET)
+
+## Suggestions
+
+/suggestion/<story_id> get a list of suggestions on how to continue with the story (GET)
+
+
 # textgen
 Script for generating text in the style of the oeuvre that is added as argument (in plain text).
 
