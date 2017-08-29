@@ -159,18 +159,19 @@ class LanguageModel:
         print(self.pos_ngrams)
 
     def load_model(self, model_saved):
+        print(model_saved)
         # read in target
-        #with open(model_saved, 'r') as file_in:#, encoding = 'utf-8') as file_in:
-        #    model = json.load(file_in)
-        #self.first_words = model[0]
-        #self.last_words = model[1]
-        #self.ngrams = model[2]
-        #self.pos_ngrams = model[3]
-        self.first_words = model_saved[0][0]
-        print(self.first_words)
-        self.last_words = model_saved[1]
-        self.ngrams = model_saved[2]
-        self.pos_ngrams = model_saved[3]
+        with open(model_saved, 'r') as file_in:#, encoding = 'utf-8') as file_in:
+            model = json.load(file_in)
+        self.first_words = model[0]
+        self.last_words = model[1]
+        self.ngrams = model[2]
+        self.pos_ngrams = model[3]
+        #self.first_words = model_saved[0]
+        #print(self.first_words)
+        #self.last_words = model_saved[1]
+        #self.ngrams = model_saved[2]
+        #self.pos_ngrams = model_saved[3]
 
     def save_model(self, outfile):
         # write target to file

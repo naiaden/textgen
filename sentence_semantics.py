@@ -29,6 +29,7 @@ class SentenceSemantics:
         return clean_sentences
 
     def sentence_similarity(self,sentence1,sentence2):
+        #print(sentence1)
         sen1_match = [word for word in sentence1 if word in self.model.vocab]
         sen2_match = [word for word in sentence2 if word in self.model.vocab]
         if len(sen1_match)>0 and len(sen2_match)>0:
@@ -40,15 +41,21 @@ class SentenceSemantics:
         #return self.model.n_similarity([word for word in sentence1 if word in self.model.vocab], [word for word in sentence2 if word in self.model.vocab])
 
     def rank_sentences_similarity(self,target_sentence,source_sentences):
+        #print(target_sentence)
         sentence_similarity = []
         for source_sentence in source_sentences:
+            #print(source_sentence)
             sensim = self.sentence_similarity(target_sentence,source_sentence)
             sentence_similarity.append((source_sentence,sensim))
         sentence_similarity_sorted = sorted(sentence_similarity,key=lambda k : k[1],reverse=True)
         return sentence_similarity_sorted
 
     def return_sentence_candidates(self,target_sentence,source_sentences,n_candidates):
+        sorted_sentences = self.rank_sentences_similarity(target_sentence,source_sentences)
         possible_ranks = [1,2,10,20,50,100,200,500,1000,2000,5000,9999]
         candidate_ranks = possible_ranks[:n_candidates]
-        sorted_sentences = self.rank_sentences_similarity(target_sentence,source_sentences)
+        candidate_ranks = [r-1 for r in candidate_ranks if r <= len(sorted_sentences)]
+        #print(candidate_ranks)
+        #print(len(sorted_sentences))
+        #return [sorted_sentences[0]]
         return [sorted_sentences[i] for i in candidate_ranks]
