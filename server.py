@@ -208,4 +208,4 @@ api.add_resource(AddSentence, '/addsentence/<story_id>')
 
 
 if __name__ == '__main__':
-    app.run(port='5003')
+    app.run(port='3040')
