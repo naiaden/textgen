@@ -19,6 +19,7 @@ tg = textgenerator.TextGenerator(lm,10)
 # load w2v model
 sensem = sentence_semantics.SentenceSemantics()
 sensem.load_model(in_w2v)
+sensem.load_lm(in_lm)
 
 # read in target sentence
 with open(in_target,'r',encoding='utf-8') as target_in:
@@ -33,9 +34,9 @@ sources = [tg.generate_sentence() for x in range(10000)] # the candidates are dr
 #target_sentence_clean = sensem.remove_stopwords_sentence(target_sentence,stopwords)
 #sources_clean = sensem.remove_stopwords_sentences(sources,stopwords)
 
-candidates = sensem.return_sentence_candidates(target_sentence,sources)
+candidates = sensem.return_sentence_candidates(target_sentence,sources,7)
 print('TARGET:',' '.join(target_sentence))
-print('CANDIDATES:','\n'.join([', '.join([' '.join(c[0]),str(c[1])]) for c in candidates]))
+print('CANDIDATES:','\n'.join([', '.join([' '.join(c[1]),str(c[0])]) for c in candidates]))
 
 with open(out_candidates,'w',encoding='utf-8') as file_out:
-    file_out.write('\n'.join([' '.join(c[0]) for c in candidates]))
+    file_out.write('\n'.join([', '.join([' '.join(c[1]),str(c[0])]) for c in candidates]))

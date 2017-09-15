@@ -53,6 +53,8 @@ class LanguageModel:
     
     # Get word, based on a sentence
     def get_next_word(self, sentence):
+        if len(sentence) / len(list(set(sentence))) > 10: # gotten in some endless loop
+            return self.get_first_word()
         if not sentence:
             return self.get_first_word()
         elif len(sentence) == 1:

@@ -44,7 +44,7 @@ lm = LanguageModel(data)
 print("+ Loading Word2Vec model")
 ss = SentenceSemantics()
 ss.load_model(w2v_model)
-
+ss.load_lm(data)
 
 @app.errorhandler(404)
 def not_found(error):
@@ -113,8 +113,8 @@ class Suggestions(Resource):
         target = tg.generate_sentence()
         for i in range(50):
             sources = [tg.generate_sentence() for x in range(150)]
-            candidates = ss.return_sentence_candidates(target,sources)
-            target = random.choice([x[0] for x in candidates])
+            candidates = ss.return_sentence_candidates(target,sources,3) # will return three sentences formatted as [['salient word',[sentence]],['salient word',[sentence]],['salient word',[sentence]]]
+            target = random.choice([x[0][1] for x in candidates])
             #
             conn = db_connect.connect()
             query = conn.execute("insert into Sentences (sentence_id, sentence, author_id) values (%d, %s, %d) " %int(sentence_id), target, %int(author_id))
