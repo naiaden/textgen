@@ -1,3 +1,88 @@
+# API
+
+The server uses a RESTful API, with GET and PUT requests.
+
+## Sentences
+
+* ```/sentences``` shows all sentences used in all stories (GET)
+  ```
+  {"data": [{"sentence_id": 1, "sentence": "December in Londen, een koude mist."}, {"sentence_id": 2, "sentence": "Een wit waas om White-Rose, in de achterkamer een groot vuur."}
+  ```
+* ```/sentence/<sentence_id>``` shows the sentence with that id (GET)
+ ```
+ {"data": [{"sentence_id": 2, "sentence": "Een wit waas om White-Rose, in de achterkamer een groot vuur."}]}
+ ```
+* ```/addsentence/<story_id>``` adds a sentence to a story (PUT), i.e. ```curl -X PUT http://localhost:5003/addsentence/3 -d data="Het sneeuwde met groote vlokken."```
+  ```
+  {"status": "sentence added"}
+  ```
+
+## Stories
+
+* ```/stories``` shows all stories with their sentences and their positions (GET)
+ ```
+ {"data": [{"story_id": 1, "sentence_id": 6, "position": 1}, {"story_id": 1, "sentence_id": 7, "position": 2}, {"story_id": 2, "sentence_id": 3, "position": 1}, {"story_id": 1, "sentence_id": 8, "position": 3}, {"story_id": 2, "sentence_id": 5, "position": 3}, {"story_id": 2, "sentence_id": 4, "position": 2}, {"story_id": 3, "sentence_id": 11, "position": 1}, {"story_id": 17, "sentence_id": 14, "position": 1}]}
+ ```
+* ```/story/<story_id>``` shows the story with its sentences and positions (GET)
+ ```
+ {"data": [{"story_id": 2, "sentence_id": 3, "position": 1}, {"story_id": 2, "sentence_id": 5, "position": 3}, {"story_id": 2, "sentence_id": 4, "position": 2}]}
+```
+* ```/createstory<author_id>``` creates a new (empty) story for an ```author_id``` (GET)
+
+## Author
+
+* ```/authors``` shows a list of all available authors (GET)
+```
+{"data": [{"author_id": 1, "name": "Louis Couperus"}, {"author_id": 2, "name": "Annie M.G. Schmidt"}]}
+```
+
+## Votes
+
+* ```/votes``` shows all votes that have been cast (GET)
+```
+{"data": [{"sentence_id": 12, "vote_id": 4}, {"sentence_id": 13, "vote_id": 5}, {"sentence_id": 14, "vote_id": 6}]}
+```
+* ```/vote/<suggestion_id>``` cast vote for suggestion, which turns the suggestion into a sentence, and is added to the story (PUT)
+```
+{
+  "vote_id": 4
+}
+```
+* ```/vote/<suggestion_id>``` shows the vote info
+
+## Suggestions
+
+* ```/suggestion/<story_id>``` get a list of suggestions on how to continue with the story (GET)
+```
+[
+  {
+    "sentence": "Stt ...", 
+    "suggestion_id": 20
+  }, 
+  {
+    "sentence": "Oneindig verstand , zegt hij in een heftige sc\u00e8ne van opstand uitbarstte , en vloekte ...", 
+    "suggestion_id": 21
+  }, 
+  {
+    "sentence": "Diego een bizondere pozitie hebben bekleed : edelman en bemiddeld kreeg hij er zelfs een formeele strijd tusschen hem en haar zelf , en 's nachts , 's morgens .", 
+    "suggestion_id": 22
+  }, 
+  {
+    "sentence": "Vier-en-twintig lictoren , de omkranste ro\u00eabundels-en-bijlen torsend , omstuwen de statie-kar , aan beide zijden verdeelde en tegen de regenten , en bijgevolg in voortdurende wording en herwording is .", 
+    "suggestion_id": 23
+  }, 
+  {
+    "sentence": "W\u00ecl u nu wat eten ....", 
+    "suggestion_id": 24
+  }, 
+  {
+    "sentence": "Blauw Paradijs , wat waren het mooie , het edele , opofferende van hare lichtzinnige daad .", 
+    "suggestion_id": 25
+  }
+]
+```
+
+
 # textgen
 Script for generating text in the style of the oeuvre that is added as argument (in plain text).
 

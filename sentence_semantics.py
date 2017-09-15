@@ -1,6 +1,12 @@
 
+<<<<<<< HEAD
 from gensim.models import Word2Vec
 import json
+=======
+#from gensim.models import Word2Vec
+import gensim
+
+>>>>>>> 15a3f92691d84621cebb8ccd400da8c50843b0ad
 
 class SentenceSemantics:
 
@@ -15,7 +21,7 @@ class SentenceSemantics:
         self.model.save_word2vec_format(outfile,binary=True)
 
     def load_model(self,modelfile):
-        self.model = Word2Vec.load_word2vec_format(modelfile,binary=True)
+        self.model = gensim.models.KeyedVectors.load_word2vec_format(modelfile,binary=True)
 
     def load_lm(self,lm):
         # read in target
@@ -35,6 +41,7 @@ class SentenceSemantics:
         return clean_sentences
 
     def sentence_similarity(self,sentence1,sentence2):
+        #print(sentence1)
         sen1_match = [word for word in sentence1 if word in self.model.vocab]
         sen2_match = [word for word in sentence2 if word in self.model.vocab]
         if len(sen1_match)>0 and len(sen2_match)>0:
@@ -46,8 +53,10 @@ class SentenceSemantics:
         #return self.model.n_similarity([word for word in sentence1 if word in self.model.vocab], [word for word in sentence2 if word in self.model.vocab])
 
     def rank_sentences_similarity(self,target_sentence,source_sentences):
+        #print(target_sentence)
         sentence_similarity = []
         for source_sentence in source_sentences:
+            #print(source_sentence)
             sensim = self.sentence_similarity(target_sentence,source_sentence)
             sentence_similarity.append((source_sentence,sensim))
         sentence_similarity_sorted = sorted(sentence_similarity,key=lambda k : k[1],reverse=True)
@@ -61,6 +70,7 @@ class SentenceSemantics:
         return list(sorted(word_salience,key = lambda k : k[1]))[0] 
 
     def return_sentence_candidates(self,target_sentence,source_sentences,n_candidates):
+        sorted_sentences = self.rank_sentences_similarity(target_sentence,source_sentences)
         possible_ranks = [1,2,10,20,50,100,200,500,1000,2000,5000,9999]
         candidate_ranks = possible_ranks[:n_candidates]
         sorted_sentences = self.rank_sentences_similarity(target_sentence,source_sentences)

@@ -5,7 +5,8 @@ import random # for get_first_word
 import json   # save and load target
 
 class LanguageModel:
-    
+   
+    # returns a first word without additional info
     def get_first_word(self):
         return random.choice(list(self.first_words.keys()))
     
@@ -160,13 +161,19 @@ class LanguageModel:
         print(self.pos_ngrams)
 
     def load_model(self, model_saved):
+        print(model_saved)
         # read in target
-        with open(model_saved, 'r', encoding = 'utf-8') as file_in:
+        with open(model_saved, 'r') as file_in:#, encoding = 'utf-8') as file_in:
             model = json.load(file_in)
         self.first_words = model[0]
         self.last_words = model[1]
         self.ngrams = model[2]
         self.pos_ngrams = model[3]
+        #self.first_words = model_saved[0]
+        #print(self.first_words)
+        #self.last_words = model_saved[1]
+        #self.ngrams = model_saved[2]
+        #self.pos_ngrams = model_saved[3]
 
     def save_model(self, outfile):
         # write target to file
