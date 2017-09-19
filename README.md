@@ -44,8 +44,9 @@ The server uses a RESTful API, with GET and PUT requests.
 ```
 * ```/vote/<suggestion_id>``` cast vote for suggestion, which turns the suggestion into a sentence, and is added to the story (PUT)
 ```
+curl -X PUT http://localhost:3041/vote/65 -d data=""
 {
-  "vote_id": 4
+  "vote_id": 65
 }
 ```
 * ```/vote/<suggestion_id>``` shows the vote info

@@ -14,38 +14,44 @@ from languagemodel import LanguageModel
 from textgenerator import TextGenerator
 from normaliser import FrogNormaliser, NormaliserFactory
 from sentence_semantics import SentenceSemantics
-##
 
-db_connect = create_engine('sqlite:///witc.db')
-app = Flask(__name__)
-api = Api(app)
-
-
+import time
 ##
 config = configparser.ConfigParser()
 config.read('witc.ini')
 
+##
+
+database_handle = 'sqlite:///' + config['INPUT']['Database']
+db_connect = create_engine(database_handle)
+app = Flask(__name__)
+api = Api(app)
+port = config['SERVICE'].get('Port', 3040)
+
 cache_file = config['INPUT']['CacheFile']
+w2v_model = config['INPUT']['W2V']
 author_lm = eval(cache_file) # [{"author_id": 1, "file": "couperus_feats.json"}]
+
+minimum_paragraph_length = int(config['OUTPUT'].get('MinimumParagraphLength', 30))
+number_of_suggestions = int(config['OUTPUT'].get('NumberOfSuggestions', 3))
+number_of_candidates = int(config['OUTPUT'].get('NumberOfCandidates', 2000))
 
 for l in author_lm:
     lm = LanguageModel()
     lm.load_model(l['file'])
     l['model'] = lm
-    l['generator'] = TextGenerator(lm, 10)
+    l['generator'] = TextGenerator(lm, minimum_paragraph_length)
+    
+    ss = SentenceSemantics()
+    ss.load_model(w2v_model)
+    ss.load_lm(l['file'])
+
+    l['semantics'] = ss 
 
     print("+ Reading author: " + str(l['author_id']))
 
-minimum_paragraph_length = int(config['OUTPUT'].get('MinimumParagraphLength', 30))
-w2v_model = config['INPUT']['W2V']
-testout = config['OUTPUT']['StoryFile']
 
 #NormaliserFactory(data, config['INPUT']['Normalisers'])
-
-print("+ Loading Word2Vec model")
-ss = SentenceSemantics()
-ss.load_model(w2v_model)
-
 
 @app.errorhandler(404)
 def not_found(error):
@@ -73,7 +79,15 @@ class Story(Resource):
     def get(self, story_id):
         conn = db_connect.connect()
         query = conn.execute("select * from Stories where story_id =%d " %int(story_id))
-        return {'data': [dict(zip(tuple (query.keys()), i)) for i in query.cursor]}
+        sentences = [dict(zip(tuple (query.keys()), i)) for i in query.cursor]
+        
+        full_text = ""
+        for sentence in sentences:
+            sentence_id = sentence['sentence_id']
+            query = conn.execute("select sentence from Sentences where sentence_id =%d " %int(sentence_id))
+            full_text += "\n" + str(query.first()[0])
+
+        return {'data': {'sentences': sentences, 'full_text': full_text}}
 
 class Authors(Resource):
     def get(self):
@@ -94,17 +108,16 @@ class Vote(Resource):
         return {'data': [dict(zip(tuple (query.keys()) ,i)) for i in query.cursor]}
 
     def put(self, sentence_id):
-        story_id = sentence_id
         something = request.form['data']
         # if number and number corresponds to sentence
         conn = db_connect.connect()
-        query = conn.execute("select sentence from Suggestions where suggestion_id =%d" %(int(sentence_id)))
-        sentence = query.first()[0]
+        query = conn.execute("select story_id, sentence from Suggestions where suggestion_id =%d" %(int(sentence_id)))
+        (story_id,sentence) = query.first()
 
         query = conn.execute("insert into Sentences (sentence) values (%s) " %("\"" + sentence + "\""))
         sentence_id = query.lastrowid
 
-        query = conn.execute("insert into Votes (sentence_id) values (%d) " %(int(sentence_id)))
+        query = conn.execute("insert into Votes (sentence_id, source, time) values (%d, %s, %s) " %(int(sentence_id),"\"" + str(request.environ['REMOTE_ADDR']) + "\"","\"" + str(time.time()) + "\""))
         vote_id = query.lastrowid
 
         #
@@ -119,51 +132,59 @@ class Vote(Resource):
         query = conn.execute("insert into Stories (story_id, sentence_id, position) values (%d, %d, %d) " %(int(story_id), int(sentence_id), int(new_position)))
         #
 
-        return jsonify({"vote_id": vote_id})
-        #sentence_ids = [i for i in query.cursor]
-        #if (int(sentence_id),) in sentence_ids:
-        #    query = conn.execute("insert into Votes (suggestion_id) values (%d) " %int(sentence_id))
-        #    result = {'vote_id': query.lastrowid}
-        #    return jsonify(result)
-        #else:
-        #    result = {'invalid_input': sentence_id}
-        #    return jsonify(result)
+        query = conn.execute("select * from Stories where story_id =%d " %int(story_id))
+        sentences = [dict(zip(tuple (query.keys()), i)) for i in query.cursor]
+        
+        full_text = ""
+        for sentence in sentences:
+            sentence_id = sentence['sentence_id']
+            query = conn.execute("select sentence from Sentences where sentence_id =%d " %int(sentence_id))
+            full_text += "\n" + str(query.first()[0])
+
+        return jsonify({"vote_id": vote_id, 'full_text':full_text})
 
 class Suggestions(Resource):
     def get(self, story_id):
         conn = db_connect.connect()
-        query = conn.execute("select * from StoryAuthor where story_id =%d " %int(story_id))
-        author = query.first()[1]
+        query = conn.execute("select author_id from StoryAuthor where story_id =%d " %int(story_id))
+        author = query.scalar()
         
-        a_lm = (item for item in author_lm if item['author_id'] == 1).next()
+        print(author)
+        print(story_id)
+        print(author_lm)
+        
+        a_lm = next(item for item in author_lm if item['author_id'] == author)
         lm = a_lm['model'] 
         tg = a_lm['generator']
+        ss = a_lm['semantics']
 
-        #query = conn.execute("select max(position) from Stories where story_id =%d " %int(story_id))
-        #last_position = query.scalar()
-
-        #conn = db_connect.connect()
         query = conn.execute("select * from Stories where story_id =%d " %int(story_id))
         sentences = [i for i in query.cursor]
         sentences.sort(key=lambda x: x[2], reverse=True)
-        last_sentence_id = sentences[0][1] 
+        try:
+            last_sentence_id = sentences[0][1]
+            query = conn.execute("select sentence from Sentences where sentence_id =%d " %int(last_sentence_id))
+            last_sentence = query.scalar()
+        except IndexError:
+            last_sentence = ""
         
-        query = conn.execute("select sentence from Sentences where sentence_id =%d " %int(last_sentence_id))
-        last_sentence = query.first()
-        print(last_sentence)
+        sources = [tg.generate_sentence() for x in range(number_of_candidates)]
 
-        sources = [tg.generate_sentence() for x in range(100)]
-
-        candidates = ss.return_sentence_candidates(last_sentence,sources, 10) #andere ranks
+        candidates = ss.return_sentence_candidates(last_sentence,sources, number_of_suggestions) #andere ranks; will return three sentences formatted as [['salient word',[sentence]],['salient word',[sentence]],['salient word',[sentence]]]
 
         return_candidates = []
         for candidate in candidates:
-            string_candidate = ' '.join(candidate[0])
+            #print(candidate)
+            string_salientword = candidate[0][0]
+            #print("Salient word: " + string_salientword)
+            list_candidate = candidate[1][:]
+            #print("Salient words:" + str(list_candidate))
+            string_candidate = ' '.join(list_candidate)
             #conn = db_connect.connect()
             query = conn.execute("insert into Suggestions (sentence, story_id) values (%s, %d) " %("\"" + string_candidate + "\"", int(story_id)))
-            return_candidates.append({'suggestion_id': query.lastrowid, 'sentence': string_candidate})
+            return_candidates.append({'highlight': string_salientword, 'suggestion_id': query.lastrowid, 'sentence': string_candidate})
             #return_candidates.append(string_candidate)
-        print(return_candidates)
+        #print(return_candidates)
         return jsonify(return_candidates)
 
 class AddSentence(Resource):
@@ -181,12 +202,6 @@ class AddSentence(Resource):
         else:
             new_position = 1
 
-        query = conn.execute("insert into Sentences (sentence) values (%s) " %("\"" + str(request.form['data']) + "\""))
-        new_sentence_id = query.lastrowid
-
-        query = conn.execute("insert into Stories (story_id, sentence_id, position) values (%d, %d, %d) " %(int(story_id), new_sentence_id, new_position))
-        return jsonify({'status': 'sentence added'})
-
 class CreateStory(Resource):
     def get(self, author_id):
         conn = db_connect.connect()
@@ -201,11 +216,11 @@ api.add_resource(Votes, '/votes')
 api.add_resource(Sentence, '/sentence/<sentence_id>')
 api.add_resource(Story, '/story/<story_id>')
 api.add_resource(Vote, '/vote/<sentence_id>')
-api.add_resource(Suggestions, '/suggestion/<story_id>')
+api.add_resource(Suggestions, '/suggestion/<story_id>') 
 
 api.add_resource(CreateStory, '/createstory/<author_id>')
 api.add_resource(AddSentence, '/addsentence/<story_id>')
 
 
 if __name__ == '__main__':
-    app.run(port='3040')
+    app.run(port=port)
