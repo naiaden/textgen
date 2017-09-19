@@ -15,7 +15,7 @@ from textgenerator import TextGenerator
 from normaliser import FrogNormaliser, NormaliserFactory
 from sentence_semantics import SentenceSemantics
 
-
+import time
 ##
 config = configparser.ConfigParser()
 config.read('witc.ini')
@@ -32,11 +32,15 @@ cache_file = config['INPUT']['CacheFile']
 w2v_model = config['INPUT']['W2V']
 author_lm = eval(cache_file) # [{"author_id": 1, "file": "couperus_feats.json"}]
 
+minimum_paragraph_length = int(config['OUTPUT'].get('MinimumParagraphLength', 30))
+number_of_suggestions = int(config['OUTPUT'].get('NumberOfSuggestions', 3))
+number_of_candidates = int(config['OUTPUT'].get('NumberOfCandidates', 2000))
+
 for l in author_lm:
     lm = LanguageModel()
     lm.load_model(l['file'])
     l['model'] = lm
-    l['generator'] = TextGenerator(lm, 10)
+    l['generator'] = TextGenerator(lm, minimum_paragraph_length)
     
     ss = SentenceSemantics()
     ss.load_model(w2v_model)
@@ -46,9 +50,6 @@ for l in author_lm:
 
     print("+ Reading author: " + str(l['author_id']))
 
-minimum_paragraph_length = int(config['OUTPUT'].get('MinimumParagraphLength', 30))
-number_of_suggestions = int(config['OUTPUT'].get('NumberOfSuggestions', 3))
-number_of_candidates = int(config['OUTPUT'].get('NumberOfCandidates', 2000))
 
 #NormaliserFactory(data, config['INPUT']['Normalisers'])
 
@@ -116,7 +117,7 @@ class Vote(Resource):
         query = conn.execute("insert into Sentences (sentence) values (%s) " %("\"" + sentence + "\""))
         sentence_id = query.lastrowid
 
-        query = conn.execute("insert into Votes (sentence_id) values (%d) " %(int(sentence_id)))
+        query = conn.execute("insert into Votes (sentence_id, source, time) values (%d, %s, %s) " %(int(sentence_id),"\"" + str(request.environ['REMOTE_ADDR']) + "\"","\"" + str(time.time()) + "\""))
         vote_id = query.lastrowid
 
         #
@@ -141,14 +142,6 @@ class Vote(Resource):
             full_text += "\n" + str(query.first()[0])
 
         return jsonify({"vote_id": vote_id, 'full_text':full_text})
-        #sentence_ids = [i for i in query.cursor]
-        #if (int(sentence_id),) in sentence_ids:
-        #    query = conn.execute("insert into Votes (suggestion_id) values (%d) " %int(sentence_id))
-        #    result = {'vote_id': query.lastrowid}
-        #    return jsonify(result)
-        #else:
-        #    result = {'invalid_input': sentence_id}
-        #    return jsonify(result)
 
 class Suggestions(Resource):
     def get(self, story_id):
@@ -165,10 +158,6 @@ class Suggestions(Resource):
         tg = a_lm['generator']
         ss = a_lm['semantics']
 
-        #query = conn.execute("select max(position) from Stories where story_id =%d " %int(story_id))
-        #last_position = query.scalar()
-
-        #conn = db_connect.connect()
         query = conn.execute("select * from Stories where story_id =%d " %int(story_id))
         sentences = [i for i in query.cursor]
         sentences.sort(key=lambda x: x[2], reverse=True)
@@ -179,8 +168,6 @@ class Suggestions(Resource):
         except IndexError:
             last_sentence = ""
         
-        #print("Last sentence: " + last_sentence)
-
         sources = [tg.generate_sentence() for x in range(number_of_candidates)]
 
         candidates = ss.return_sentence_candidates(last_sentence,sources, number_of_suggestions) #andere ranks; will return three sentences formatted as [['salient word',[sentence]],['salient word',[sentence]],['salient word',[sentence]]]
