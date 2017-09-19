@@ -1,12 +1,8 @@
 
-<<<<<<< HEAD
-from gensim.models import Word2Vec
-import json
-=======
 #from gensim.models import Word2Vec
 import gensim
+import json
 
->>>>>>> 15a3f92691d84621cebb8ccd400da8c50843b0ad
 
 class SentenceSemantics:
 
@@ -64,14 +60,15 @@ class SentenceSemantics:
 
     def return_sentence_salient_word(self,sentence):
         word1_salience = [sentence[0],self.lm[sentence[0]]['count']]
-        print('w1s',word1_salience)
+        #print('w1s',word1_salience)
         word_salience = [[word,self.lm[word]['count']] for word in sentence]
-        print(word_salience)
+        #print(word_salience)
         return list(sorted(word_salience,key = lambda k : k[1]))[0] 
 
     def return_sentence_candidates(self,target_sentence,source_sentences,n_candidates):
         sorted_sentences = self.rank_sentences_similarity(target_sentence,source_sentences)
         possible_ranks = [1,2,10,20,50,100,200,500,1000,2000,5000,9999]
         candidate_ranks = possible_ranks[:n_candidates]
+        candidate_ranks = [r-1 for r in candidate_ranks if r <= len(sorted_sentences)]
         sorted_sentences = self.rank_sentences_similarity(target_sentence,source_sentences)
         return [[self.return_sentence_salient_word(sorted_sentences[i][0]),sorted_sentences[i][0]] for i in candidate_ranks]

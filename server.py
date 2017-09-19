@@ -26,6 +26,7 @@ config = configparser.ConfigParser()
 config.read('witc.ini')
 
 cache_file = config['INPUT']['CacheFile']
+w2v_model = config['INPUT']['W2V']
 author_lm = eval(cache_file) # [{"author_id": 1, "file": "couperus_feats.json"}]
 
 for l in author_lm:
@@ -33,19 +34,19 @@ for l in author_lm:
     lm.load_model(l['file'])
     l['model'] = lm
     l['generator'] = TextGenerator(lm, 10)
+    
+    ss = SentenceSemantics()
+    ss.load_model(w2v_model)
+    ss.load_lm(l['file'])
+
+    l['semantics'] = ss 
 
     print("+ Reading author: " + str(l['author_id']))
 
 minimum_paragraph_length = int(config['OUTPUT'].get('MinimumParagraphLength', 30))
-w2v_model = config['INPUT']['W2V']
 testout = config['OUTPUT']['StoryFile']
 
 #NormaliserFactory(data, config['INPUT']['Normalisers'])
-
-print("+ Loading Word2Vec model")
-ss = SentenceSemantics()
-ss.load_model(w2v_model)
-ss.load_lm(data)
 
 @app.errorhandler(404)
 def not_found(error):
@@ -135,9 +136,14 @@ class Suggestions(Resource):
         query = conn.execute("select * from StoryAuthor where story_id =%d " %int(story_id))
         author = query.first()[1]
         
-        a_lm = (item for item in author_lm if item['author_id'] == 1).next()
+        print(author)
+        print(story_id)
+        print(author_lm)
+        
+        a_lm = next(item for item in author_lm if item['author_id'] == 1)
         lm = a_lm['model'] 
         tg = a_lm['generator']
+        ss = a_lm['semantics']
 
         #query = conn.execute("select max(position) from Stories where story_id =%d " %int(story_id))
         #last_position = query.scalar()
@@ -149,8 +155,8 @@ class Suggestions(Resource):
         last_sentence_id = sentences[0][1] 
         
         query = conn.execute("select sentence from Sentences where sentence_id =%d " %int(last_sentence_id))
-        last_sentence = query.first()
-        print(last_sentence)
+        last_sentence = query.scalar()
+        #print("Last sentence: " + last_sentence)
 
         sources = [tg.generate_sentence() for x in range(100)]
 
@@ -158,12 +164,17 @@ class Suggestions(Resource):
 
         return_candidates = []
         for candidate in candidates:
-            string_candidate = ' '.join(candidate[0][1])
+            #print(candidate)
+            string_salientword = candidate[0][0]
+            #print("Salient word: " + string_salientword)
+            list_candidate = candidate[1][:]
+            #print("Salient words:" + str(list_candidate))
+            string_candidate = ' '.join(list_candidate)
             #conn = db_connect.connect()
             query = conn.execute("insert into Suggestions (sentence, story_id) values (%s, %d) " %("\"" + string_candidate + "\"", int(story_id)))
-            return_candidates.append({'suggestion_id': query.lastrowid, 'sentence': string_candidate})
+            return_candidates.append({'highlight': string_salientword, 'suggestion_id': query.lastrowid, 'sentence': string_candidate})
             #return_candidates.append(string_candidate)
-        print(return_candidates)
+        #print(return_candidates)
         return jsonify(return_candidates)
 
 class AddSentence(Resource):
