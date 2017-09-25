@@ -48,7 +48,7 @@ for l in author_lm:
 
     l['semantics'] = ss 
 
-    print("+ Reading author: " + str(l['author_id']))
+    print("+ Reading author: " + l['author'] + " id" + str(l['author_id']))
 
 
 #NormaliserFactory(data, config['INPUT']['Normalisers'])
