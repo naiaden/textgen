@@ -31,10 +31,12 @@ port = config['SERVICE'].get('Port', 3040)
 cache_file = config['INPUT']['CacheFile']
 w2v_model = config['INPUT']['W2V']
 author_lm = eval(cache_file) # [{"author_id": 1, "file": "couperus_feats.json"}]
+forced_suggestions = eval(config['INPUT']['ForcedSuggestions'])
 
 minimum_paragraph_length = int(config['OUTPUT'].get('MinimumParagraphLength', 30))
 number_of_suggestions = int(config['OUTPUT'].get('NumberOfSuggestions', 3))
 number_of_candidates = int(config['OUTPUT'].get('NumberOfCandidates', 2000))
+normalise_interpunction = 'True' == config['OUTPUT'].get('NormaliseInterpunction', "False")
 
 for l in author_lm:
     lm = LanguageModel()
@@ -151,7 +153,7 @@ class Suggestions(Resource):
         
         print(author)
         print(story_id)
-        print(author_lm)
+        #print(author_lm)
         
         a_lm = next(item for item in author_lm if item['author_id'] == author)
         lm = a_lm['model'] 
@@ -170,7 +172,17 @@ class Suggestions(Resource):
         
         sources = [tg.generate_sentence() for x in range(number_of_candidates)]
 
-        candidates = ss.return_sentence_candidates(last_sentence,sources, number_of_suggestions) #andere ranks; will return three sentences formatted as [['salient word',[sentence]],['salient word',[sentence]],['salient word',[sentence]]]
+        forced_suggestion = next((item for item in forced_suggestions if item.get("author_id", -1) == int(author)), None)
+
+        candidates = []
+        if forced_suggestion:
+            suggestions_f = forced_suggestion['suggestions']
+            while len(candidates) < number_of_suggestions and suggestions_f:
+                candidates.append(suggestions_f.pop())
+                print("Adding forced suggestion")
+
+        candidates_left = number_of_suggestions - len(candidates)
+        candidates = candidates + ss.return_sentence_candidates(last_sentence,sources, candidates_left) #andere ranks; will return three sentences formatted as [['salient word',[sentence]],['salient word',[sentence]],['salient word',[sentence]]]
 
         return_candidates = []
         for candidate in candidates:
@@ -181,6 +193,8 @@ class Suggestions(Resource):
             #print("Salient words:" + str(list_candidate))
             string_candidate = ' '.join(list_candidate)
             #conn = db_connect.connect()
+            if normalise_interpunction:
+                string_candidate = string_candidate.replace(" ,", "")
             query = conn.execute("insert into Suggestions (sentence, story_id) values (%s, %d) " %("\"" + string_candidate + "\"", int(story_id)))
             return_candidates.append({'highlight': string_salientword, 'suggestion_id': query.lastrowid, 'sentence': string_candidate})
             #return_candidates.append(string_candidate)
