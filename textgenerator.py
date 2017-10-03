@@ -2,7 +2,13 @@ class TextGenerator:
     # Generates one sentence (list-based) until a sentence final words occurs
     def generate_sentence(self): # target = word or pos
         sentence = []
-        sentence.append(self.lm.get_first_word())
+        first_word = False
+        while not first_word:
+            first_word = self.lm.get_first_word()
+            if first_word.lower()[0] == 'q' or first_word.lower() in ['autrement','goodbye','paix','un','dieu','amboise']:
+                first_word = False
+        # sentence.append(self.lm.get_first_word())
+        sentence.append(first_word)
         
         next_word = self.lm.get_next_word(sentence)
         while not self.lm.is_last_word(next_word):
