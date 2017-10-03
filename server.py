@@ -194,7 +194,7 @@ class Suggestions(Resource):
             string_candidate = ' '.join(list_candidate)
             #conn = db_connect.connect()
             if normalise_interpunction:
-                string_candidate = string_candidate.replace(" ,", "").replace(" .","").replace(" !","").replace(" ?","")
+                string_candidate = string_candidate.replace(" ,", "").replace(" .",".").replace(" !","!").replace(" ?","?")
             query = conn.execute("insert into Suggestions (sentence, story_id) values (%s, %d) " %("\"" + string_candidate + "\"", int(story_id)))
             return_candidates.append({'highlight': string_salientword, 'suggestion_id': query.lastrowid, 'sentence': string_candidate})
             #return_candidates.append(string_candidate)
