@@ -1,12 +1,7 @@
 
-<<<<<<< HEAD
-from gensim.models import Word2Vec
-import json
-=======
-#from gensim.models import Word2Vec
+# from gensim.models import Word2Vec
 import gensim
-
->>>>>>> 15a3f92691d84621cebb8ccd400da8c50843b0ad
+import json
 
 class SentenceSemantics:
 
